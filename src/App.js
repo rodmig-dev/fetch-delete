@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const deleteUser = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/users/4a52", {
+        method: "DELETE", //metodo delete que remove o registro
+      });
+      if (response.status !== 404) {
+        console.log("Usuário removido com sucessso!");
+      } else {
+        console.log("ID de usuário inexistente!!!");
+      }
+    } catch (error) {
+      console.error("Erro na deleção", error);
+    }
+  };
+  return <button onClick={deleteUser}>Deletar</button>;
 }
-
-export default App;
